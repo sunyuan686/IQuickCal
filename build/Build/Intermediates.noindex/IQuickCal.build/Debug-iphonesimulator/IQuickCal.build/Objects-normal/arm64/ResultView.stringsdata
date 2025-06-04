@@ -1,0 +1,72 @@
+{
+  "source": "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/ResultView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "练习结果"
+      },
+      {
+        "comment": "",
+        "key": "完成"
+      },
+      {
+        "comment": "",
+        "key": "%lld%%"
+      },
+      {
+        "comment": "",
+        "key": "正确率"
+      },
+      {
+        "comment": "",
+        "key": "详细统计"
+      },
+      {
+        "comment": "",
+        "key": "错题回顾"
+      },
+      {
+        "comment": "",
+        "key": "%lld题"
+      },
+      {
+        "comment": "",
+        "key": "查看全部错题"
+      },
+      {
+        "comment": "",
+        "key": "再练一组"
+      },
+      {
+        "comment": "",
+        "key": "点击左上角\"完成\"按钮返回首页"
+      },
+      {
+        "comment": "",
+        "key": "或者继续练习提高你的速算能力！"
+      },
+      {
+        "comment": "",
+        "key": "%@"
+      },
+      {
+        "comment": "",
+        "key": "错题详情"
+      },
+      {
+        "comment": "",
+        "key": "你的答案"
+      },
+      {
+        "comment": "",
+        "key": "正确答案"
+      },
+      {
+        "comment": "",
+        "key": "用时: %@秒"
+      }
+    ]
+  },
+  "version": 1
+}

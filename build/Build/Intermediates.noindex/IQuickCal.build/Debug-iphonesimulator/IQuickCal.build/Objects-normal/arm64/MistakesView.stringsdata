@@ -1,0 +1,96 @@
+{
+  "source": "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/MistakesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "错题本"
+      },
+      {
+        "comment": "",
+        "key": "清空错题本"
+      },
+      {
+        "comment": "",
+        "key": "清空已掌握"
+      },
+      {
+        "comment": "",
+        "key": "清空全部"
+      },
+      {
+        "comment": "",
+        "key": "取消"
+      },
+      {
+        "comment": "",
+        "key": "清空"
+      },
+      {
+        "comment": "",
+        "key": "此操作将删除所有错题记录，无法恢复。"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "未掌握"
+      },
+      {
+        "comment": "",
+        "key": "已掌握"
+      },
+      {
+        "comment": "",
+        "key": "%lld题"
+      },
+      {
+        "comment": "",
+        "key": "你的答案: %@"
+      },
+      {
+        "comment": "",
+        "key": "正确答案: %@"
+      },
+      {
+        "comment": "",
+        "key": "错误 %lld 次"
+      },
+      {
+        "comment": "",
+        "key": "重做"
+      },
+      {
+        "comment": "",
+        "key": "重做练习"
+      },
+      {
+        "comment": "",
+        "key": "答案"
+      },
+      {
+        "comment": "",
+        "key": "="
+      },
+      {
+        "comment": "",
+        "key": "正确！"
+      },
+      {
+        "comment": "",
+        "key": "再试试看"
+      },
+      {
+        "comment": "",
+        "key": "提交"
+      },
+      {
+        "comment": "",
+        "key": "完成"
+      }
+    ]
+  },
+  "version": 1
+}

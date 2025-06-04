@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .tab-bar {
+            height: 83px;
+            background: rgba(248, 248, 248, 0.94);
+            backdrop-filter: blur(20px);
+            border-top: 0.5px solid rgba(0,0,0,0.1);
+        }
+        .setting-item {
+            transition: all 0.2s ease;
+        }
+        .setting-item:active {
+            background-color: #f3f4f6;
+        }
+        .toggle-switch {
+            width: 51px;
+            height: 31px;
+            background: #34d399;
+            border-radius: 15.5px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .toggle-switch.off {
+            background: #d1d5db;
+        }
+        .toggle-knob {
+            width: 27px;
+            height: 27px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 22px;
+            transition: left 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .toggle-switch.off .toggle-knob {
+            left: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 h-screen overflow-hidden">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div>9:41</div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal text-xs"></i>
+            <i class="fas fa-wifi text-xs"></i>
+            <i class="fas fa-battery-three-quarters text-xs"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex flex-col" style="height: calc(100vh - 127px); max-height: 717px; overflow-y: auto;">
+        <!-- 导航栏 -->
+        <div class="bg-white px-6 py-4 shadow-sm">
+            <h1 class="text-2xl font-bold text-gray-900">设置</h1>
+            <p class="text-gray-600 text-sm mt-1">个性化您的练习体验</p>
+        </div>
+
+        <!-- 用户信息卡片 -->
+        <div class="bg-white px-6 py-4 border-b border-gray-100">
+            <div class="flex items-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-user text-white text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="text-lg font-semibold text-gray-900">速算达人</div>
+                    <div class="text-sm text-gray-500">已练习 7 天</div>
+                    <div class="text-xs text-blue-600 font-medium">等级 LV.3</div>
+                </div>
+                <button class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 设置列表 -->
+        <div class="flex-1 overflow-y-auto">
+            <!-- 练习设置 -->
+            <div class="bg-white mb-2">
+                <div class="px-6 py-3 border-b border-gray-100">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">练习设置</h3>
+                </div>
+                
+                <div class="setting-item px-6 py-4 flex items-center justify-between border-b border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-list-ol text-blue-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">默认题目数量</div>
+                            <div class="text-gray-500 text-sm">每组练习的题目数量</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 mr-2">20题</span>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div class="setting-item px-6 py-4 flex items-center justify-between border-b border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-clock text-green-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">显示计时器</div>
+                            <div class="text-gray-500 text-sm">练习时显示每题用时</div>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <div class="toggle-knob"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-volume-up text-purple-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">音效提醒</div>
+                            <div class="text-gray-500 text-sm">答题正确/错误时播放音效</div>
+                        </div>
+                    </div>
+                    <div class="toggle-switch off">
+                        <div class="toggle-knob"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据管理 -->
+            <div class="bg-white mb-2">
+                <div class="px-6 py-3 border-b border-gray-100">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">数据管理</h3>
+                </div>
+                
+                <div class="setting-item px-6 py-4 flex items-center justify-between border-b border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fab fa-icloud text-indigo-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">iCloud 同步</div>
+                            <div class="text-gray-500 text-sm">自动同步练习数据到云端</div>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <div class="toggle-knob"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item px-6 py-4 flex items-center justify-between border-b border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-download text-orange-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">导出数据</div>
+                            <div class="text-gray-500 text-sm">导出练习记录和统计数据</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+
+                <div class="setting-item px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-trash text-red-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">清空所有数据</div>
+                            <div class="text-gray-500 text-sm">删除所有练习记录和错题</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- 其他设置 -->
+            <div class="bg-white mb-2">
+                <div class="px-6 py-3 border-b border-gray-100">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">其他</h3>
+                </div>
+                
+                <div class="setting-item px-6 py-4 flex items-center justify-between border-b border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-star text-yellow-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">给应用评分</div>
+                            <div class="text-gray-500 text-sm">在 App Store 中评价</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+
+                <div class="setting-item px-6 py-4 flex items-center justify-between border-b border-gray-100">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-question-circle text-cyan-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">帮助与反馈</div>
+                            <div class="text-gray-500 text-sm">使用指南和问题反馈</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+
+                <div class="setting-item px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-info-circle text-gray-600 text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-gray-900 font-medium">关于应用</div>
+                            <div class="text-gray-500 text-sm">版本信息和隐私政策</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- 版本信息 -->
+            <div class="px-6 py-4 text-center">
+                <div class="text-gray-400 text-sm">公考速算练习 v1.0.0</div>
+                <div class="text-gray-400 text-xs mt-1">© 2025 速算练习团队</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部标签栏 -->
+    <div class="tab-bar flex items-center justify-around pt-2">
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-home text-gray-400 text-lg"></i>
+            <span class="text-gray-400 text-xs">首页</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-exclamation-triangle text-gray-400 text-lg"></i>
+            <span class="text-gray-400 text-xs">错题本</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-chart-line text-gray-400 text-lg"></i>
+            <span class="text-gray-400 text-xs">历史</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-cog text-blue-600 text-lg"></i>
+            <span class="text-blue-600 text-xs font-medium">设置</span>
+        </div>
+    </div>
+</body>
+</html>

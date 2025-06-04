@@ -1,0 +1,198 @@
+{
+  "" : {
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCal-master.dia",
+    "emit-module-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCal-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCal-master-emit-module.dia",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCal-master.swiftdeps"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/ContentView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/IQuickCalApp.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/IQuickCalApp~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Models/Answer.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Answer~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Models/PracticeSession.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeSession~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Models/Question.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/Question~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Models/QuestionType.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionType~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Models/UserPreferences.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/UserPreferences~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Models/WrongAnswer.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/WrongAnswer~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Services/PracticeManager.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeManager~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Services/QuestionGenerator.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/QuestionGenerator~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Styles/ButtonStyles.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ButtonStyles~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/HistoryView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HistoryView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/HomeView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/HomeView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/MainTabView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MainTabView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/MistakesView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/MistakesView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/PracticeView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/PracticeView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/ResultView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/ResultView~partial.swiftmodule"
+  },
+  "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/SettingsView.swift" : {
+    "const-values" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.dia",
+    "index-unit-output-path" : "/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/sunyuan/develop/project/ios/IQuickCal/build/Build/Intermediates.noindex/IQuickCal.build/Debug-iphonesimulator/IQuickCal.build/Objects-normal/arm64/SettingsView~partial.swiftmodule"
+  }
+}

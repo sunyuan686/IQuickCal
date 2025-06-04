@@ -1,0 +1,24 @@
+{
+  "source": "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/MainTabView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "练习"
+      },
+      {
+        "comment": "",
+        "key": "历史"
+      },
+      {
+        "comment": "",
+        "key": "错题本"
+      },
+      {
+        "comment": "",
+        "key": "设置"
+      }
+    ]
+  },
+  "version": 1
+}

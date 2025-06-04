@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .tab-bar {
+            height: 83px;
+            background: rgba(248, 248, 248, 0.94);
+            backdrop-filter: blur(20px);
+            border-top: 0.5px solid rgba(0,0,0,0.1);
+        }
+        .practice-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .practice-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 h-screen overflow-hidden">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div>9:41</div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal text-xs"></i>
+            <i class="fas fa-wifi text-xs"></i>
+            <i class="fas fa-battery-three-quarters text-xs"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex flex-col" style="height: calc(100vh - 127px); max-height: 717px; overflow-y: auto;">
+        <!-- 导航栏 -->
+        <div class="bg-white px-6 py-3 shadow-sm">
+            <h1 class="text-xl font-bold text-gray-900">速算练习</h1>
+            <p class="text-gray-600 text-sm mt-1">选择题型开始练习</p>
+        </div>
+
+        <!-- 快速开始卡片 -->
+        <div class="px-6 py-4">
+            <div class="practice-card rounded-2xl p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold mb-2">快速开始</h2>
+                        <p class="text-white/80 text-sm">混合练习 · 20题</p>
+                    </div>
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-play text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 题型选择 -->
+        <div class="flex-1 px-6 pb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">题型练习</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <!-- 两位数加法 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-plus text-blue-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 text-sm">两位数加法</h4>
+                    <p class="text-gray-500 text-xs mt-1">27 + 56</p>
+                </div>
+
+                <!-- 两位数减法 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-minus text-red-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 text-sm">两位数减法</h4>
+                    <p class="text-gray-500 text-xs mt-1">89 - 34</p>
+                </div>
+
+                <!-- 三位数加法 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-plus text-green-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 text-sm">三位数加法</h4>
+                    <p class="text-gray-500 text-xs mt-1">143 + 258</p>
+                </div>
+
+                <!-- 三位数减法 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-minus text-orange-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 text-sm">三位数减法</h4>
+                    <p class="text-gray-500 text-xs mt-1">726 - 319</p>
+                </div>
+
+                <!-- 乘法练习 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-times text-purple-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 text-sm">乘法练习</h4>
+                    <p class="text-gray-500 text-xs mt-1">25 × 7</p>
+                </div>
+
+                <!-- 除法练习 -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-divide text-indigo-600"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 text-sm">除法练习</h4>
+                    <p class="text-gray-500 text-xs mt-1">86313 ÷ 41</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部标签栏 -->
+    <div class="tab-bar flex items-center justify-around pt-2">
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-home text-blue-600 text-lg"></i>
+            <span class="text-blue-600 text-xs font-medium">首页</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-exclamation-triangle text-gray-400 text-lg"></i>
+            <span class="text-gray-400 text-xs">错题本</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-chart-line text-gray-400 text-lg"></i>
+            <span class="text-gray-400 text-xs">历史</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+            <i class="fas fa-cog text-gray-400 text-lg"></i>
+            <span class="text-gray-400 text-xs">设置</span>
+        </div>
+    </div>
+</body>
+</html>

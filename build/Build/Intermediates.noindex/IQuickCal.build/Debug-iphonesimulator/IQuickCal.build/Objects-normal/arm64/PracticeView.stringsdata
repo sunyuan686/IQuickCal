@@ -1,0 +1,36 @@
+{
+  "source": "/Users/sunyuan/develop/project/ios/IQuickCal/IQuickCal/Views/PracticeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "退出"
+      },
+      {
+        "comment": "",
+        "key": "%lld / %lld"
+      },
+      {
+        "comment": "",
+        "key": "总时间"
+      },
+      {
+        "comment": "",
+        "key": "本题时间"
+      },
+      {
+        "comment": "",
+        "key": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "="
+      },
+      {
+        "comment": "",
+        "key": "确认"
+      }
+    ]
+  },
+  "version": 1
+}

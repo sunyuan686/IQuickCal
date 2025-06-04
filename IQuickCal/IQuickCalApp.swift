@@ -12,7 +12,11 @@ import SwiftData
 struct IQuickCalApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Question.self,
+            PracticeSession.self,
+            Answer.self,
+            WrongAnswer.self,
+            UserPreferences.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,8 +29,9 @@ struct IQuickCalApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
         .modelContainer(sharedModelContainer)
     }
 }
+

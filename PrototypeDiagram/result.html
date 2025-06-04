@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习结果</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .result-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .chart-container {
+            position: relative;
+            margin: 0 auto;
+        }
+        .circle-progress {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 h-screen overflow-hidden">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div>9:41</div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal text-xs"></i>
+            <i class="fas fa-wifi text-xs"></i>
+            <i class="fas fa-battery-three-quarters text-xs"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex flex-col" style="height: calc(100vh - 44px); max-height: 800px; overflow-y: auto;">
+        <!-- 导航栏 -->
+        <div class="bg-white px-6 py-3 shadow-sm flex items-center justify-between">
+            <button class="text-blue-600 text-lg">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="text-lg font-semibold text-gray-900">练习完成</h1>
+            <div class="w-6"></div>
+        </div>
+
+        <!-- 结果卡片 -->
+        <div class="px-6 py-4">
+            <div class="result-card rounded-2xl p-6 text-white text-center">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-trophy text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold mb-2">练习完成！</h2>
+                <p class="text-white/80 text-sm">两位数加法 · 20题</p>
+                <div class="mt-3 text-2xl font-bold">85%</div>
+                <div class="text-white/80 text-xs">正确率</div>
+            </div>
+        </div>
+
+        <!-- 详细统计 -->
+        <div class="flex-1 px-6 pb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">详细统计</h3>
+            
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="stat-card">
+                    <div class="text-2xl font-bold text-green-600 mb-1">17</div>
+                    <div class="text-gray-600 text-sm">答对题数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-2xl font-bold text-red-500 mb-1">3</div>
+                    <div class="text-gray-600 text-sm">答错题数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-2xl font-bold text-blue-600 mb-1">4:32</div>
+                    <div class="text-gray-600 text-sm">总用时</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-2xl font-bold text-purple-600 mb-1">13.6s</div>
+                    <div class="text-gray-600 text-sm">平均用时</div>
+                </div>
+            </div>
+
+            <!-- 正确率图表 -->
+            <div class="bg-white rounded-2xl p-4 mb-4">
+                <h4 class="font-semibold text-gray-900 mb-3 text-center text-sm">正确率分析</h4>
+                <div class="chart-container mx-auto" style="width: 100px; height: 100px;">
+                    <svg width="100" height="100" class="circle-progress">
+                        <circle cx="50" cy="50" r="40" stroke="#e5e7eb" stroke-width="6" fill="none"/>
+                        <circle cx="50" cy="50" r="40" stroke="#10b981" stroke-width="6" fill="none"
+                                stroke-dasharray="251" stroke-dashoffset="38" stroke-linecap="round"/>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-gray-900">85%</div>
+                            <div class="text-xs text-gray-500">正确率</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 错题提醒 -->
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 mb-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-triangle text-red-500 mr-3 text-sm"></i>
+                        <div>
+                            <div class="font-semibold text-red-800 text-sm">发现 3 道错题</div>
+                            <div class="text-red-600 text-xs">已自动加入错题本</div>
+                        </div>
+                    </div>
+                    <button class="text-red-600 text-sm font-medium">查看</button>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="space-y-3">
+                <button class="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold shadow-md">
+                    再来一次
+                </button>
+                <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold">
+                    返回首页
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
