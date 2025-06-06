@@ -119,6 +119,9 @@ Temporary Items
 # Visual Studio Code
 .vscode/
 
+# JetBrains IDEs
+.idea/
+
 # Xcode Patch
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
