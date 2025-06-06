@@ -58,10 +58,6 @@ struct PracticeView: View {
         .onDisappear {
             stopTimer()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ReturnToHome"))) { _ in
-            // 收到返回首页的通知，清空导航路径返回到根视图
-            navigationPath = NavigationPath()
-        }
         .navigationDestination(isPresented: $navigateToResult) {
             if let session = practiceManager?.currentSession {
                 ResultView(session: session, navigationPath: $navigationPath)
@@ -231,23 +227,44 @@ struct PracticeView: View {
         if let manager = practiceManager, let question = manager.currentQuestion {
             // 只显示选择题选项，输入框已移到题目区域
             if question.isMultipleChoice, let options = question.options {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 2), spacing: 12) {
-                    ForEach(Array(options.enumerated()), id: \.offset) { index, option in
-                        Button(action: {
-                            selectOption(option)
-                        }) {
-                            Text(option)
-                                .font(.system(size: 18, weight: .medium))
-                                .foregroundColor(currentAnswer == option ? .white : .primary)
-                                .frame(height: 44)
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(currentAnswer == option ? Color.blue : Color(.systemGray6))
-                                )
+                VStack(spacing: 16) {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 2), spacing: 12) {
+                        ForEach(Array(options.enumerated()), id: \.offset) { index, option in
+                            Button(action: {
+                                selectOption(option)
+                            }) {
+                                Text(option)
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundColor(currentAnswer == option ? .white : .primary)
+                                    .frame(height: 44)
+                                    .frame(maxWidth: .infinity)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(currentAnswer == option ? Color.blue : Color(.systemGray6))
+                                    )
+                            }
+                            .buttonStyle(ScaleButtonStyle())
                         }
-                        .buttonStyle(ScaleButtonStyle())
                     }
+                    
+                    // 提交按钮用于多选题
+                    Button(action: submitAnswer) {
+                        HStack {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 18, weight: .medium))
+                            Text("提交答案")
+                                .font(.system(size: 18, weight: .medium))
+                        }
+                        .foregroundColor(.white)
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(currentAnswer.isEmpty ? Color(.systemGray4) : Color(.systemBlue))
+                        )
+                    }
+                    .disabled(currentAnswer.isEmpty)
+                    .buttonStyle(ScaleButtonStyle())
                 }
                 .padding(.bottom, 12)
             }
