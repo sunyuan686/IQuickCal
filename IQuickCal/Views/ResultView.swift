@@ -46,6 +46,7 @@ struct ResultView: View {
         .navigationTitle("练习结果")
         .navigationBarTitleDisplayMode(.large)
         .navigationBarBackButtonHidden()
+        .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {

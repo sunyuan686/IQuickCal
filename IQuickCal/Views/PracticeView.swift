@@ -50,6 +50,7 @@ struct PracticeView: View {
             }
         }
         .navigationBarHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .onAppear {
             setupPracticeManager()
             startTimer()
