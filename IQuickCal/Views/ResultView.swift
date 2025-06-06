@@ -24,7 +24,7 @@ struct ResultView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 32) {
+            VStack(spacing: 20) {
                 // 顶部成绩卡片
                 resultCard
                 
@@ -39,8 +39,8 @@ struct ResultView: View {
                 // 操作按钮
                 actionButtons
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 32)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 20)
         }
         .background(Color(.systemGroupedBackground))
         .navigationTitle("练习结果")
@@ -76,71 +76,136 @@ struct ResultView: View {
     }
     
     private var resultCard: some View {
-        VStack(spacing: 20) {
-            // 正确率圆环
+        VStack(spacing: 16) {
+            // 正确率圆环 - 重新设计更美观
             ZStack {
+                // 外层阴影圆环
                 Circle()
-                    .stroke(Color.gray.opacity(0.15), lineWidth: 10)
-                    .frame(width: 140, height: 140)
+                    .stroke(Color.gray.opacity(0.08), lineWidth: 3)
+                    .frame(width: 120, height: 120)
                 
+                // 背景圆环
+                Circle()
+                    .stroke(Color.gray.opacity(0.12), lineWidth: 8)
+                    .frame(width: 110, height: 110)
+                
+                // 进度圆环 - 多层渐变效果
                 Circle()
                     .trim(from: 0, to: session.correctRate)
                     .stroke(
-                        LinearGradient(
-                            gradient: Gradient(colors: [.green, .blue]),
-                            startPoint: .topTrailing,
-                            endPoint: .bottomLeading
+                        AngularGradient(
+                            colors: getProgressColors(),
+                            center: .center,
+                            startAngle: .degrees(-90),
+                            endAngle: .degrees(270 * session.correctRate - 90)
                         ),
-                        style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                        style: StrokeStyle(lineWidth: 8, lineCap: .round)
                     )
-                    .frame(width: 140, height: 140)
+                    .frame(width: 110, height: 110)
                     .rotationEffect(.degrees(-90))
-                    .animation(.easeInOut(duration: 1.2), value: session.correctRate)
+                    .animation(.spring(response: 1.5, dampingFraction: 0.8), value: session.correctRate)
                 
-                VStack(spacing: 4) {
-                    Text("\(Int(session.correctRate * 100))%")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                // 圆环端点的小圆点
+                if session.correctRate > 0 {
+                    Circle()
+                        .fill(getProgressColors().last ?? .blue)
+                        .frame(width: 12, height: 12)
+                        .offset(y: -55)
+                        .rotationEffect(.degrees(360 * session.correctRate - 90))
+                        .animation(.spring(response: 1.5, dampingFraction: 0.8).delay(0.3), value: session.correctRate)
+                        .shadow(color: getProgressColors().last?.opacity(0.5) ?? .blue.opacity(0.5), radius: 3, x: 0, y: 1)
+                }
+                
+                // 中心内容
+                VStack(spacing: 2) {
+                    Text("\(Int(session.correctRate * 100))")
+                        .font(.system(size: 28, weight: .heavy, design: .rounded))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: getProgressColors(),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                    
+                    Text("%")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.secondary)
+                        .offset(y: -2)
                     
                     Text("正确率")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.secondary)
+                        .offset(y: -2)
                 }
+                .scaleEffect(session.correctRate > 0 ? 1 : 0.8)
+                .animation(.spring(response: 1.2, dampingFraction: 0.8).delay(0.5), value: session.correctRate)
             }
             
-            // 完成提示
+            // 完成提示 - 更紧凑
             Text(getResultMessage())
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
                 .multilineTextAlignment(.center)
-                .lineSpacing(2)
+                .lineSpacing(1)
         }
-        .padding(32)
+        .padding(.vertical, 24)
+        .padding(.horizontal, 20)
         .background(
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    .green.opacity(0.08), 
-                    .blue.opacity(0.08),
-                    .purple.opacity(0.05)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            RoundedRectangle(cornerRadius: 16)
+                .fill(
+                    LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: Color(.systemBackground), location: 0),
+                            .init(color: getProgressColors().first?.opacity(0.02) ?? .blue.opacity(0.02), location: 1)
+                        ]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .strokeBorder(
+                            LinearGradient(
+                                colors: [getProgressColors().first?.opacity(0.1) ?? .blue.opacity(0.1), .clear],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 1
+                        )
+                )
         )
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+        .shadow(color: Color.black.opacity(0.04), radius: 8, x: 0, y: 3)
+    }
+    
+    // 根据正确率返回不同的渐变色
+    private func getProgressColors() -> [Color] {
+        let rate = session.correctRate
+        switch rate {
+        case 0.9...1.0:
+            return [.green, .mint, .cyan]
+        case 0.8..<0.9:
+            return [.blue, .cyan, .teal]
+        case 0.7..<0.8:
+            return [.orange, .yellow, .mint]
+        default:
+            return [.red, .orange, .yellow]
+        }
     }
     
     private var statisticsSection: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 16) {
             Text("详细统计")
                 .font(.headline)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
             
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+            LazyVGrid(columns: [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ], spacing: 12) {
                 StatCard(
                     title: "总题数",
                     value: "\(session.totalQuestions)",
@@ -176,7 +241,6 @@ struct ResultView: View {
                     color: .orange
                 )
                 
-                // 添加一个占位符保持布局平衡
                 StatCard(
                     title: "完成度",
                     value: session.isCompleted ? "100%" : "进行中",
@@ -185,11 +249,11 @@ struct ResultView: View {
                 )
             }
         }
-        .padding(20)
+        .padding(16)
         .background(
             Color(.systemBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
+                .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 2)
         )
     }
     
@@ -198,7 +262,7 @@ struct ResultView: View {
     }
     
     private var wrongAnswersSection: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Text("错题回顾")
                     .font(.headline)
@@ -216,7 +280,7 @@ struct ResultView: View {
                     .clipShape(Capsule())
             }
             
-            LazyVStack(spacing: 12) {
+            LazyVStack(spacing: 8) {
                 ForEach(wrongAnswers.prefix(3), id: \.id) { answer in
                     WrongAnswerRow(answer: answer)
                 }
@@ -227,34 +291,34 @@ struct ResultView: View {
                     }
                     .font(.caption)
                     .foregroundColor(.blue)
-                    .padding(.top, 8)
+                    .padding(.top, 6)
                 }
             }
         }
-        .padding(20)
+        .padding(16)
         .background(
             Color(.systemBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
+                .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 2)
         )
     }
     
     private var actionButtons: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 16) {
             // 再练一组按钮 - 主要操作按钮，更加突出
             Button(action: {
                 startNewPracticeSession()
             }) {
-                HStack(spacing: 12) {
+                HStack(spacing: 10) {
                     Image(systemName: "arrow.clockwise")
-                        .font(.title2)
+                        .font(.title3)
                         .fontWeight(.semibold)
                     Text("再练一组")
-                        .font(.title3)
+                        .font(.headline)
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
-                .frame(height: 60)
+                .frame(height: 50)
                 .frame(maxWidth: .infinity)
                 .background(
                     LinearGradient(
@@ -263,13 +327,13 @@ struct ResultView: View {
                         endPoint: .trailing
                     )
                 )
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .shadow(color: Color.blue.opacity(0.4), radius: 12, x: 0, y: 6)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .shadow(color: Color.blue.opacity(0.3), radius: 8, x: 0, y: 4)
             }
             .buttonStyle(ScaleButtonStyle())
             
             // 提示文本区域
-            VStack(spacing: 8) {
+            VStack(spacing: 4) {
                 Text("点击左上角\"完成\"按钮返回首页")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -336,41 +400,37 @@ struct StatCard: View {
     let color: Color
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 6) {
             Image(systemName: icon)
-                .font(.title2)
+                .font(.system(size: 16, weight: .medium))
                 .foregroundColor(color)
-                .frame(width: 24, height: 24)
+                .frame(width: 20, height: 20)
             
             Text(value)
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundColor(.primary)
                 .lineLimit(1)
-                .minimumScaleFactor(0.8)
+                .minimumScaleFactor(0.7)
             
             Text(title)
-                .font(.caption)
+                .font(.caption2)
                 .foregroundColor(.secondary)
                 .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
-        .frame(height: 100)
+        .frame(height: 80)
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 16)
-        .padding(.horizontal, 12)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 8)
         .background(
-            LinearGradient(
-                gradient: Gradient(colors: [color.opacity(0.05), color.opacity(0.02)]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            RoundedRectangle(cornerRadius: 12)
+                .fill(color.opacity(0.06))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .strokeBorder(color.opacity(0.15), lineWidth: 1)
+                )
         )
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(color.opacity(0.2), lineWidth: 1.5)
-        )
-        .shadow(color: color.opacity(0.1), radius: 4, x: 0, y: 2)
+        .shadow(color: color.opacity(0.08), radius: 2, x: 0, y: 1)
     }
 }
 
@@ -378,13 +438,14 @@ struct WrongAnswerRow: View {
     let answer: Answer
     
     var body: some View {
-        HStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 6) {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(answer.questionExpression)
-                    .font(.headline)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
                     .foregroundColor(.primary)
                 
-                HStack(spacing: 12) {
+                HStack(spacing: 10) {
                     Label("\(answer.userAnswer)", systemImage: "xmark.circle.fill")
                         .foregroundColor(.red)
                         .font(.caption)
@@ -398,15 +459,15 @@ struct WrongAnswerRow: View {
             Spacer()
             
             Image(systemName: "chevron.right")
-                .font(.caption)
+                .font(.caption2)
                 .foregroundColor(.secondary)
         }
-        .padding(16)
+        .padding(12)
         .background(Color(.systemGray6))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.red.opacity(0.2), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.red.opacity(0.15), lineWidth: 1)
         )
     }
 }
