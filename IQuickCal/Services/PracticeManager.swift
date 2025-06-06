@@ -26,6 +26,10 @@ class PracticeManager {
     var sessionStartTime: Date?
     var questionStartTime: Date?
     var totalElapsedTime: TimeInterval = 0
+    var totalPausedTime: TimeInterval = 0
+    var pauseStartTime: Date?
+    var questionElapsedTime: TimeInterval = 0
+    var questionPausedTime: TimeInterval = 0
     
     // 统计信息
     var correctCount: Int = 0
@@ -50,6 +54,10 @@ class PracticeManager {
         correctCount = 0
         wrongCount = 0
         totalElapsedTime = 0
+        totalPausedTime = 0
+        pauseStartTime = nil
+        questionElapsedTime = 0
+        questionPausedTime = 0
         isCompleted = false
         isPaused = false
         
@@ -67,9 +75,9 @@ class PracticeManager {
     func submitAnswer() {
         guard let currentQuestion = currentQuestion,
               let session = currentSession,
-              let questionStart = questionStartTime else { return }
+              questionStartTime != nil else { return }
         
-        let timeSpent = Date().timeIntervalSince(questionStart)
+        let timeSpent = currentQuestionElapsedTime
         let isCorrect = currentAnswer == currentQuestion.correctAnswer
         
         // 创建答题记录
@@ -108,15 +116,23 @@ class PracticeManager {
         currentQuestionIndex += 1
         currentAnswer = ""
         questionStartTime = Date()
+        questionElapsedTime = 0
+        questionPausedTime = 0
+        
+        // 如果当前处于暂停状态，重置暂停开始时间为当前时间
+        // 这样新题目的暂停时间计算才是正确的
+        if isPaused {
+            pauseStartTime = Date()
+        }
     }
     
     // 完成练习
     private func completePractice() {
         guard let session = currentSession,
-              let sessionStart = sessionStartTime else { return }
+              sessionStartTime != nil else { return }
         
         isCompleted = true
-        let totalTime = Date().timeIntervalSince(sessionStart)
+        let totalTime = currentSessionElapsedTime
         
         // 更新会话信息
         session.correctAnswers = correctCount
@@ -157,14 +173,18 @@ class PracticeManager {
     // 暂停/恢复练习
     func togglePause() {
         isPaused.toggle()
+        
         if isPaused {
-            // 暂停时记录已用时间
-            if let questionStart = questionStartTime {
-                totalElapsedTime += Date().timeIntervalSince(questionStart)
-            }
+            // 暂停时记录暂停开始时间
+            pauseStartTime = Date()
         } else {
-            // 恢复时重新开始计时
-            questionStartTime = Date()
+            // 恢复时累计暂停时间
+            if let pauseStart = pauseStartTime {
+                let pauseDuration = Date().timeIntervalSince(pauseStart)
+                totalPausedTime += pauseDuration
+                questionPausedTime += pauseDuration
+                pauseStartTime = nil
+            }
         }
     }
     
@@ -180,18 +200,38 @@ class PracticeManager {
         return Double(currentQuestionIndex) / Double(questions.count)
     }
     
-    // 重置练习
-    func resetPractice() {
-        currentSession = nil
-        questions = []
-        currentQuestionIndex = 0
-        currentAnswer = ""
-        isCompleted = false
-        isPaused = false
-        sessionStartTime = nil
-        questionStartTime = nil
-        totalElapsedTime = 0
-        correctCount = 0
-        wrongCount = 0
+    // 获取当前有效的总会话时间（不包括暂停时间）
+    var currentSessionElapsedTime: TimeInterval {
+        guard let sessionStart = sessionStartTime else { return 0 }
+        let totalRawTime = Date().timeIntervalSince(sessionStart)
+        let currentPausedTime = isPaused ? (pauseStartTime.map { Date().timeIntervalSince($0) } ?? 0) : 0
+        return max(0, totalRawTime - totalPausedTime - currentPausedTime)
     }
+    
+    // 获取当前题目的有效用时（不包括暂停时间）
+    var currentQuestionElapsedTime: TimeInterval {
+        guard let questionStart = questionStartTime else { return 0 }
+        let totalRawTime = Date().timeIntervalSince(questionStart)
+        let currentPausedTime = isPaused ? (pauseStartTime.map { Date().timeIntervalSince($0) } ?? 0) : 0
+        return max(0, totalRawTime - questionPausedTime - currentPausedTime)
+    }
+    
+        // 重置练习
+        func resetPractice() {
+            currentSession = nil
+            questions = []
+            currentQuestionIndex = 0
+            currentAnswer = ""
+            isCompleted = false
+            isPaused = false
+            sessionStartTime = nil
+            questionStartTime = nil
+            totalElapsedTime = 0
+            totalPausedTime = 0
+            pauseStartTime = nil
+            questionElapsedTime = 0
+            questionPausedTime = 0
+            correctCount = 0
+            wrongCount = 0
+        }
 }

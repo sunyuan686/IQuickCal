@@ -96,10 +96,12 @@ struct PracticeView: View {
                     Spacer()
                     
                     // 暂停按钮
-                    Button(action: {}) {
-                        Image(systemName: "pause.fill")
+                    Button(action: {
+                        manager.togglePause()
+                    }) {
+                        Image(systemName: manager.isPaused ? "play.fill" : "pause.fill")
                             .font(.system(size: 17))
-                            .foregroundColor(.gray)
+                            .foregroundColor(manager.isPaused ? .green : .gray)
                     }
                 }
                 .padding(.horizontal, 16)
@@ -324,23 +326,20 @@ struct PracticeView: View {
     // 更新经过的时间
     private func updateElapsedTime() {
         guard let manager = practiceManager,
-              !manager.isPaused,
               !manager.isCompleted else { return }
         
-        if let sessionStart = manager.sessionStartTime {
-            sessionElapsedTime = Date().timeIntervalSince(sessionStart)
-        }
-        
-        if let questionStart = manager.questionStartTime {
-            questionElapsedTime = Date().timeIntervalSince(questionStart)
-        }
+        // 使用管理器中的计算属性来获取正确的时间
+        sessionElapsedTime = manager.currentSessionElapsedTime
+        questionElapsedTime = manager.currentQuestionElapsedTime
     }
     
     // 格式化时间显示
     private func formatTime(_ timeInterval: TimeInterval) -> String {
-        let minutes = Int(timeInterval) / 60
-        let seconds = Int(timeInterval) % 60
-        let deciseconds = Int((timeInterval * 10).truncatingRemainder(dividingBy: 10))
+        // 确保时间不为负数
+        let safeTimeInterval = max(0, timeInterval)
+        let minutes = Int(safeTimeInterval) / 60
+        let seconds = Int(safeTimeInterval) % 60
+        let deciseconds = Int((safeTimeInterval * 10).truncatingRemainder(dividingBy: 10))
         
         if minutes > 0 {
             return String(format: "%d:%02d.%d", minutes, seconds, deciseconds)
@@ -391,9 +390,6 @@ struct PracticeView: View {
         
         // 提交答案
         manager.submitAnswer()
-        
-        // 重置当前题目计时
-        questionElapsedTime = 0
         
         // 重置输入
         currentAnswer = ""
