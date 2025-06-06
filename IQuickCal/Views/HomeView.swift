@@ -8,16 +8,23 @@
 import SwiftUI
 import SwiftData
 
+// 导航目标结构
+struct PracticeDestination: Hashable {
+    let questionType: QuestionType
+    let questionCount: Int
+}
+
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var userPreferences: [UserPreferences]
+    @State private var navigationPath = NavigationPath()
     
     var questionsPerSet: Int {
         userPreferences.first?.questionsPerSet ?? 20
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             ScrollView {
                 VStack(spacing: 20) {
                     // 快速开始卡片
@@ -26,10 +33,20 @@ struct HomeView: View {
                     // 题型选择
                     questionTypesSection
                 }
-                .padding()
-            }
-            .navigationTitle("速算练习")
-            .navigationBarTitleDisplayMode(.large)
+                .padding()        }
+        .navigationTitle("速算练习")
+        .navigationBarTitleDisplayMode(.large)
+        .navigationDestination(for: PracticeDestination.self) { destination in
+            PracticeView(
+                questionType: destination.questionType,
+                questionCount: destination.questionCount,
+                navigationPath: $navigationPath
+            )
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ReturnToHome"))) { _ in
+            // 收到返回首页的通知，清空导航路径
+            navigationPath = NavigationPath()
+        }
         }
         .onAppear {
             initializeUserPreferences()
@@ -37,7 +54,9 @@ struct HomeView: View {
     }
     
     private var quickStartCard: some View {
-        NavigationLink(destination: PracticeView(questionType: .mixed, questionCount: questionsPerSet)) {
+        Button(action: {
+            navigationPath.append(PracticeDestination(questionType: .mixed, questionCount: questionsPerSet))
+        }) {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("快速开始")
@@ -83,7 +102,8 @@ struct HomeView: View {
                 ForEach(QuestionType.allCases.filter { $0 != .mixed }, id: \.self) { questionType in
                     QuestionTypeCard(
                         questionType: questionType,
-                        questionsPerSet: questionsPerSet
+                        questionsPerSet: questionsPerSet,
+                        navigationPath: $navigationPath
                     )
                 }
             }
@@ -102,9 +122,12 @@ struct HomeView: View {
 struct QuestionTypeCard: View {
     let questionType: QuestionType
     let questionsPerSet: Int
+    @Binding var navigationPath: NavigationPath
     
     var body: some View {
-        NavigationLink(destination: PracticeView(questionType: questionType, questionCount: questionsPerSet)) {
+        Button(action: {
+            navigationPath.append(PracticeDestination(questionType: questionType, questionCount: questionsPerSet))
+        }) {
             VStack(alignment: .leading, spacing: 12) {
                 // 图标
                 Image(systemName: questionType.icon)

@@ -12,12 +12,14 @@ struct ResultView: View {
     @Environment(\.dismiss) private var dismiss
     
     let session: PracticeSession
+    @Binding var navigationPath: NavigationPath
     
     @State private var showingAllWrongAnswers = false
     @State private var shouldNavigateToNewPractice = false
     
-    init(session: PracticeSession) {
+    init(session: PracticeSession, navigationPath: Binding<NavigationPath>) {
         self.session = session
+        self._navigationPath = navigationPath
     }
     
     var body: some View {
@@ -69,7 +71,7 @@ struct ResultView: View {
             AllWrongAnswersView(wrongAnswers: wrongAnswers)
         }
         .navigationDestination(isPresented: $shouldNavigateToNewPractice) {
-            PracticeView(questionType: session.type, questionCount: session.totalQuestions)
+            PracticeView(questionType: session.type, questionCount: session.totalQuestions, navigationPath: $navigationPath)
         }
     }
     
@@ -322,8 +324,8 @@ struct ResultView: View {
         // 重置导航状态，防止意外触发新练习
         shouldNavigateToNewPractice = false
         
-        // 使用dismiss返回到导航栈的根视图
-        dismiss()
+        // 发送通知给父视图（这是备用方案）
+        NotificationCenter.default.post(name: NSNotification.Name("ReturnToHome"), object: nil)
     }
 }
 
@@ -507,14 +509,22 @@ struct WrongAnswerDetailRow: View {
 }
 
 #Preview {
-    let session = PracticeSession(type: .twoDigitAddition, totalQuestions: 10)
-    session.correctAnswers = 8
-    session.totalTime = 120
-    session.averageTime = 12
-    session.endTime = Date()
-    session.isCompleted = true
-    
-    return NavigationView {
-        ResultView(session: session)
+    struct PreviewWrapper: View {
+        @State private var navigationPath = NavigationPath()
+        
+        var body: some View {
+            let session = PracticeSession(type: .twoDigitAddition, totalQuestions: 10)
+            session.correctAnswers = 8
+            session.totalTime = 120
+            session.averageTime = 12
+            session.endTime = Date()
+            session.isCompleted = true
+            
+            return NavigationView {
+                ResultView(session: session, navigationPath: $navigationPath)
+            }
+        }
     }
+    
+    return PreviewWrapper()
 }

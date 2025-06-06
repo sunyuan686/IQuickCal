@@ -14,6 +14,7 @@ struct PracticeView: View {
     
     let questionType: QuestionType
     let questionCount: Int
+    @Binding var navigationPath: NavigationPath
     
     @State private var practiceManager: PracticeManager?
     @State private var currentAnswer = ""
@@ -60,9 +61,13 @@ struct PracticeView: View {
         .onDisappear {
             stopTimer()
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ReturnToHome"))) { _ in
+            // 收到返回首页的通知，清空导航路径返回到根视图
+            navigationPath = NavigationPath()
+        }
         .navigationDestination(isPresented: $navigateToResult) {
             if let session = practiceManager?.currentSession {
-                ResultView(session: session)
+                ResultView(session: session, navigationPath: $navigationPath)
             }
         }
     }
@@ -413,6 +418,7 @@ struct NumberButton: View {
 
 
 #Preview {
-    PracticeView(questionType: .twoDigitAddition, questionCount: 5)
+    @State var navigationPath = NavigationPath()
+    return PracticeView(questionType: .twoDigitAddition, questionCount: 5, navigationPath: $navigationPath)
         .modelContainer(for: [PracticeSession.self, Answer.self, WrongAnswer.self], inMemory: true)
 }
