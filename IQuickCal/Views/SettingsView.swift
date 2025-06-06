@@ -82,10 +82,10 @@ struct SettingsView: View {
                         .fontWeight(.medium)
                 }
                 
-                Slider(value: $questionsPerSet, in: 10...50, step: 5) {
+                Slider(value: $questionsPerSet, in: 1...50, step: 1) {
                     Text("题目数量")
                 } minimumValueLabel: {
-                    Text("10")
+                    Text("1")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 } maximumValueLabel: {

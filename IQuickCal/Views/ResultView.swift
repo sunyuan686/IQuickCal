@@ -308,11 +308,20 @@ struct ResultView: View {
     
     // 开始新的练习会话
     private func startNewPracticeSession() {
-        shouldNavigateToNewPractice = true
+        // 确保重置其他状态
+        showingAllWrongAnswers = false
+        
+        // 延迟一下，确保状态正确设置
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            shouldNavigateToNewPractice = true
+        }
     }
     
     // 返回首页
     private func returnToHome() {
+        // 重置导航状态，防止意外触发新练习
+        shouldNavigateToNewPractice = false
+        
         // 使用dismiss返回到导航栈的根视图
         dismiss()
     }
