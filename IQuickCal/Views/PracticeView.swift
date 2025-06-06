@@ -34,26 +34,22 @@ struct PracticeView: View {
                 // 顶部进度区域
                 progressSection
                 
-                // 题目显示区域
+                // 题目显示区域 - 灵活高度，占据主要空间
                 questionSection
+                    .frame(minHeight: 200)
+                    .layoutPriority(1)
                 
-                // 答案输入区域
+                // 答案输入区域 - 固定合理高度
                 answerSection
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 12)
                 
-                // 数字键盘
+                // 数字键盘 - 紧凑布局
                 numberPad
+                    .background(Color(.systemGray6))
             }
         }
-        .navigationTitle(questionType.rawValue)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("退出") {
-                    dismiss()
-                }
-            }
-        }
+        .navigationBarHidden(true)
         .onAppear {
             setupPracticeManager()
             startTimer()
@@ -75,106 +71,152 @@ struct PracticeView: View {
     @ViewBuilder
     private var progressSection: some View {
         if let manager = practiceManager {
-            VStack(spacing: 12) {
-                // 顶部时间和进度信息
+            VStack(spacing: 0) {
+                // 导航栏样式的顶部区域
                 HStack {
-                    // 总时间
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("总时间")
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-                        Text(formatTime(sessionElapsedTime))
-                            .font(.caption)
-                            .fontWeight(.medium)
+                    // 退出按钮
+                    Button("退出") {
+                        dismiss()
+                    }
+                    .foregroundColor(.blue)
+                    .font(.system(size: 17))
+                    
+                    Spacer()
+                    
+                    // 中央标题和进度
+                    VStack(spacing: 2) {
+                        Text(questionType.rawValue)
+                            .font(.system(size: 17, weight: .semibold))
                             .foregroundColor(.primary)
+                        Text("第 \(manager.currentQuestionIndex + 1) 题 / 共 \(manager.questions.count) 题")
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
                     }
                     
                     Spacer()
                     
-                    // 题目进度
-                    Text("\(manager.currentQuestionIndex + 1) / \(manager.questions.count)")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    // 当前题时间
-                    VStack(alignment: .trailing, spacing: 2) {
-                        Text("本题时间")
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-                        Text(formatTime(questionElapsedTime))
-                            .font(.caption)
-                            .fontWeight(.medium)
-                            .foregroundColor(.primary)
+                    // 暂停按钮
+                    Button(action: {}) {
+                        Image(systemName: "pause.fill")
+                            .font(.system(size: 17))
+                            .foregroundColor(.gray)
                     }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+                .background(Color(.systemBackground))
                 
                 // 进度条
                 ProgressView(value: manager.progress)
                     .progressViewStyle(LinearProgressViewStyle(tint: .blue))
                     .frame(height: 4)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 8)
+                    .background(Color(.systemBackground))
                 
-                // 正确/错误统计
+                // 统计信息行
                 HStack {
-                    Spacer()
-                    
-                    HStack(spacing: 16) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                                .font(.caption)
-                            Text("\(manager.correctCount)")
-                                .fontWeight(.medium)
-                        }
-                        
-                        HStack(spacing: 4) {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.red)
-                                .font(.caption)
-                            Text("\(manager.wrongCount)")
-                                .fontWeight(.medium)
-                        }
+                    // 总用时
+                    VStack(spacing: 2) {
+                        Text(formatTime(sessionElapsedTime))
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.blue)
+                        Text("总用时")
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
                     }
-                    .font(.caption)
                     
                     Spacer()
+                    
+                    // 答对数
+                    VStack(spacing: 2) {
+                        Text("\(manager.correctCount)")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.green)
+                        Text("答对")
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    // 答错数
+                    VStack(spacing: 2) {
+                        Text("\(manager.wrongCount)")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.red)
+                        Text("答错")
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    // 本题用时
+                    VStack(spacing: 2) {
+                        Text(formatTime(questionElapsedTime))
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.primary)
+                        Text("本题用时")
+                            .font(.system(size: 12))
+                            .foregroundColor(.secondary)
+                    }
                 }
-            }
-            .padding()
-            .background(Color(.systemBackground))
-            .overlay(
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+                .background(Color(.systemBackground))
+                
+                // 分隔线
                 Rectangle()
                     .frame(height: 0.5)
-                    .foregroundColor(Color(.separator)),
-                alignment: .bottom
-            )
+                    .foregroundColor(Color(.separator))
+            }
         }
     }
     
     @ViewBuilder
     private var questionSection: some View {
         if let manager = practiceManager, let question = manager.currentQuestion {
-            VStack(spacing: 32) {
-                Spacer()
+            // 题目显示区域 - 居中布局，充分利用空间
+            VStack {
+                Spacer(minLength: 40)
                 
-                // 题目表达式 - 更大更醒目
-                Text(question.expression)
-                    .font(.system(size: 48, weight: .medium, design: .monospaced))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
+                VStack(spacing: 16) {
+                    // 题目表达式
+                    Text(question.expression)
+                        .font(.system(size: 48, weight: .bold, design: .monospaced))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.center)
+                    
+                    // 等号
+                    Text("=")
+                        .font(.system(size: 36, weight: .light))
+                        .foregroundColor(.secondary)
+                    
+                    // 答案输入显示
+                    Text(currentAnswer.isEmpty ? "?" : currentAnswer)
+                        .font(.system(size: 36, weight: .semibold, design: .monospaced))
+                        .foregroundColor(currentAnswer.isEmpty ? .secondary : .primary)
+                        .frame(minWidth: 180)
+                        .padding(.bottom, 2)
+                        .overlay(
+                            Rectangle()
+                                .frame(height: 2)
+                                .foregroundColor(.blue),
+                            alignment: .bottom
+                        )
+                }
                 
-                Text("=")
-                    .font(.system(size: 32, weight: .light))
-                    .foregroundColor(.secondary)
-                
-                Spacer()
+                Spacer(minLength: 40)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity)
             .background(
-                RoundedRectangle(cornerRadius: 0)
-                    .fill(showCorrectAnimation ? Color.green.opacity(0.1) : 
-                          showWrongAnimation ? Color.red.opacity(0.1) : Color.clear)
+                Color(.systemBackground)
+                    .overlay(
+                        Rectangle()
+                            .fill(showCorrectAnimation ? Color.green.opacity(0.1) : 
+                                  showWrongAnimation ? Color.red.opacity(0.1) : Color.clear)
+                    )
             )
             .animation(.easeInOut(duration: 0.3), value: showCorrectAnimation)
             .animation(.easeInOut(duration: 0.3), value: showWrongAnimation)
@@ -184,72 +226,37 @@ struct PracticeView: View {
     @ViewBuilder
     private var answerSection: some View {
         if let manager = practiceManager, let question = manager.currentQuestion {
-            VStack(spacing: 16) {
-                // 选择题选项
-                if question.isMultipleChoice, let options = question.options {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 2), spacing: 12) {
-                        ForEach(Array(options.enumerated()), id: \.offset) { index, option in
-                            Button(action: {
-                                selectOption(option)
-                            }) {
-                                Text(option)
-                                    .font(.title3)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(currentAnswer == option ? .white : .primary)
-                                    .frame(height: 50)
-                                    .frame(maxWidth: .infinity)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .fill(currentAnswer == option ? Color.blue : Color(.systemGray6))
-                                    )
-                            }
-                            .buttonStyle(ScaleButtonStyle())
-                        }
-                    }
-                } else {
-                    // 答案输入框 - 占位符样式
-                    Text(currentAnswer.isEmpty ? "答案" : currentAnswer)
-                        .font(.system(size: 24, weight: .medium, design: .monospaced))
-                        .foregroundColor(currentAnswer.isEmpty ? .secondary : .primary)
-                        .frame(height: 50)
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(.systemGray4), lineWidth: 1)
+            // 只显示选择题选项，输入框已移到题目区域
+            if question.isMultipleChoice, let options = question.options {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 2), spacing: 12) {
+                    ForEach(Array(options.enumerated()), id: \.offset) { index, option in
+                        Button(action: {
+                            selectOption(option)
+                        }) {
+                            Text(option)
+                                .font(.system(size: 18, weight: .medium))
+                                .foregroundColor(currentAnswer == option ? .white : .primary)
+                                .frame(height: 44)
+                                .frame(maxWidth: .infinity)
                                 .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color(.systemBackground))
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(currentAnswer == option ? Color.blue : Color(.systemGray6))
                                 )
-                        )
-                        .padding(.horizontal)
+                        }
+                        .buttonStyle(ScaleButtonStyle())
+                    }
                 }
-                
-                // 提交按钮
-                Button(action: submitAnswer) {
-                    Text("确认")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
-                        .frame(height: 50)
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(currentAnswer.isEmpty ? Color(.systemGray4) : Color(.systemBlue))
-                        )
-                }
-                .disabled(currentAnswer.isEmpty)
-                .buttonStyle(ScaleButtonStyle())
-                .padding(.horizontal)
+                .padding(.bottom, 12)
             }
-            .padding()
         }
     }
     
     @ViewBuilder
     private var numberPad: some View {
         if let manager = practiceManager, let question = manager.currentQuestion, !question.isMultipleChoice {
-            VStack(spacing: 8) {
+            VStack(spacing: 12) {
                 // 数字按钮 1-9
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 3), spacing: 8) {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 12) {
                     ForEach(1...9, id: \.self) { number in
                         NumberButton(number: "\(number)") {
                             appendToAnswer("\(number)")
@@ -257,32 +264,42 @@ struct PracticeView: View {
                     }
                 }
                 
-                // 底部行：小数点、0、删除
-                HStack(spacing: 8) {
-                    NumberButton(number: ".") {
-                        appendToAnswer(".")
+                // 底部行：退格、0、确认
+                HStack(spacing: 12) {
+                    Button(action: deleteLastCharacter) {
+                        Image(systemName: "delete.left.fill")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundColor(.primary)
+                            .frame(height: 50)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color(.systemGray5))
+                            )
                     }
+                    .buttonStyle(ScaleButtonStyle())
                     
                     NumberButton(number: "0") {
                         appendToAnswer("0")
                     }
                     
-                    Button(action: deleteLastCharacter) {
-                        Image(systemName: "delete.left.fill")
-                            .font(.title3)
-                            .foregroundColor(.primary)
+                    Button(action: submitAnswer) {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundColor(.white)
                             .frame(height: 50)
                             .frame(maxWidth: .infinity)
                             .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color(.systemGray6))
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(currentAnswer.isEmpty ? Color(.systemGray4) : Color(.systemBlue))
                             )
                     }
+                    .disabled(currentAnswer.isEmpty)
                     .buttonStyle(ScaleButtonStyle())
                 }
             }
-            .padding()
-            .background(Color(.systemBackground))
+            .padding(.horizontal, 16)
+            .padding(.vertical, 16)
         }
     }
     
@@ -398,17 +415,14 @@ struct NumberButton: View {
     var body: some View {
         Button(action: action) {
             Text(number)
-                .font(.system(size: 24, weight: .medium))
+                .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(.primary)
                 .frame(height: 50)
                 .frame(maxWidth: .infinity)
                 .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(.systemGray6))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(.systemGray5), lineWidth: 0.5)
-                        )
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                 )
         }
         .buttonStyle(ScaleButtonStyle())
