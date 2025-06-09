@@ -158,4 +158,27 @@ enum QuestionType: String, CaseIterable, Codable {
             return "\(minutes)分\(seconds)秒"
         }
     }
+    
+    // 根据题目数量计算推荐时间（分钟）
+    func recommendedTimeInMinutes(for questionCount: Int) -> Double {
+        // 计算每题的平均时间（基于默认题量）
+        let timePerQuestion = recommendedTimeInMinutes / Double(recommendedQuestionCount)
+        // 根据实际题量计算总时间
+        return timePerQuestion * Double(questionCount)
+    }
+    
+    // 根据题目数量格式化时间显示
+    func formattedTime(for questionCount: Int) -> String {
+        let totalMinutes = recommendedTimeInMinutes(for: questionCount)
+        let minutes = Int(totalMinutes)
+        let seconds = Int((totalMinutes - Double(minutes)) * 60)
+        
+        if seconds == 0 {
+            return "\(minutes)分钟"
+        } else if seconds == 30 {
+            return "\(minutes).5分钟"
+        } else {
+            return "\(minutes)分\(seconds)秒"
+        }
+    }
 }

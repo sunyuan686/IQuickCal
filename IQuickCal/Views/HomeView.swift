@@ -56,7 +56,7 @@ struct HomeView: View {
     private var quickStartCard: some View {
         Button(action: {
             let mixedType = QuestionType.mixed
-            navigationPath.append(PracticeDestination(questionType: mixedType, questionCount: mixedType.recommendedQuestionCount))
+            navigationPath.append(PracticeDestination(questionType: mixedType, questionCount: questionsPerSet))
         }) {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
@@ -65,7 +65,7 @@ struct HomeView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     
-                    Text("混合练习 · \(QuestionType.mixed.recommendedQuestionCount)题 · \(QuestionType.mixed.formattedTime)")
+                    Text("混合练习 · \(questionsPerSet)题 · \(QuestionType.mixed.formattedTime(for: questionsPerSet))")
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                 }
@@ -128,7 +128,7 @@ struct QuestionTypeCard: View {
     
     var body: some View {
         Button(action: {
-            navigationPath.append(PracticeDestination(questionType: questionType, questionCount: questionType.recommendedQuestionCount))
+            navigationPath.append(PracticeDestination(questionType: questionType, questionCount: questionsPerSet))
         }) {
             VStack(alignment: .leading, spacing: 12) {
                 // 图标和标题行
@@ -143,7 +143,7 @@ struct QuestionTypeCard: View {
                     Spacer()
                     
                     // 题量标识
-                    Text("\(questionType.recommendedQuestionCount)题")
+                    Text("\(questionsPerSet)题")
                         .font(.caption)
                         .fontWeight(.medium)
                         .foregroundColor(colorForType(questionType.color))
@@ -172,7 +172,7 @@ struct QuestionTypeCard: View {
                         Image(systemName: "clock")
                             .font(.caption2)
                             .foregroundColor(.secondary)
-                        Text(questionType.formattedTime)
+                        Text(questionType.formattedTime(for: questionsPerSet))
                             .font(.caption)
                             .foregroundColor(.secondary)
                         

@@ -69,7 +69,7 @@ struct SettingsView: View {
     
     private var practiceSettingsSection: some View {
         Section("练习设置") {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text("每组题目数量")
                         .font(.headline)
@@ -82,18 +82,18 @@ struct SettingsView: View {
                         .fontWeight(.medium)
                 }
                 
-                Slider(value: $questionsPerSet, in: 1...50, step: 1) {
-                    Text("题目数量")
-                } minimumValueLabel: {
-                    Text("1")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                } maximumValueLabel: {
-                    Text("50")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .accentColor(.blue)
+                // iPhone样式的滚轮选择器
+                QuestionCountPicker(
+                    selectedCount: Binding(
+                        get: { Int(questionsPerSet) },
+                        set: { questionsPerSet = Double($0) }
+                    ),
+                    showDefaultOption: false
+                )
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemGray6))
+                )
             }
             .padding(.vertical, 8)
         }
