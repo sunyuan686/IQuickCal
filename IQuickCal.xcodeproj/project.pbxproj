@@ -35,6 +35,7 @@
 		AA0480A72DF6822600665E68 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA04809C2DF6822600665E68 /* SettingsView.swift */; };
 		AA0480A92DF6B4C300665E68 /* PracticeSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0480A82DF6B4C300665E68 /* PracticeSetupView.swift */; };
 		AA0480AB2DF6B4D500665E68 /* QuestionCountPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0480AA2DF6B4D500665E68 /* QuestionCountPicker.swift */; };
+		AA0480AD2DF6BCB200665E68 /* CompactQuestionCountPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0480AC2DF6BCB200665E68 /* CompactQuestionCountPicker.swift */; };
 		AAC97F5A2DF0183700B007D3 /* IQuickCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC97F592DF0183700B007D3 /* IQuickCalApp.swift */; };
 		AAC97F5C2DF0183700B007D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC97F5B2DF0183700B007D3 /* ContentView.swift */; };
 		AAC97F602DF0183800B007D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAC97F5F2DF0183800B007D3 /* Assets.xcassets */; };
@@ -104,6 +105,7 @@
 		AA04809C2DF6822600665E68 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA0480A82DF6B4C300665E68 /* PracticeSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeSetupView.swift; sourceTree = "<group>"; };
 		AA0480AA2DF6B4D500665E68 /* QuestionCountPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCountPicker.swift; sourceTree = "<group>"; };
+		AA0480AC2DF6BCB200665E68 /* CompactQuestionCountPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactQuestionCountPicker.swift; sourceTree = "<group>"; };
 		AAC97F562DF0183700B007D3 /* IQuickCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IQuickCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC97F592DF0183700B007D3 /* IQuickCalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQuickCalApp.swift; sourceTree = "<group>"; };
 		AAC97F5B2DF0183700B007D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		AA0480952DF6822600665E68 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA0480AC2DF6BCB200665E68 /* CompactQuestionCountPicker.swift */,
 				AA0480AA2DF6B4D500665E68 /* QuestionCountPicker.swift */,
 				AA0480922DF6822600665E68 /* DrawingCanvas.swift */,
 				AA0480932DF6822600665E68 /* DrawingOverlayView.swift */,
@@ -509,6 +512,7 @@
 				AAC97FB22DF0225C00B007D3 /* UserPreferences.swift in Sources */,
 				AA0480A92DF6B4C300665E68 /* PracticeSetupView.swift in Sources */,
 				AAC97FB12DF0225C00B007D3 /* QuestionType.swift in Sources */,
+				AA0480AD2DF6BCB200665E68 /* CompactQuestionCountPicker.swift in Sources */,
 				AA0480A52DF6822600665E68 /* PracticeView.swift in Sources */,
 				AAC97F5A2DF0183700B007D3 /* IQuickCalApp.swift in Sources */,
 				AA0480A42DF6822600665E68 /* MistakesView.swift in Sources */,

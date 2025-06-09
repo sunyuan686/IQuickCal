@@ -69,33 +69,19 @@ struct SettingsView: View {
     
     private var practiceSettingsSection: some View {
         Section("练习设置") {
-            VStack(alignment: .leading, spacing: 16) {
-                HStack {
-                    Text("每组题目数量")
-                        .font(.headline)
-                    
-                    Spacer()
-                    
-                    Text("\(Int(questionsPerSet))题")
-                        .font(.subheadline)
-                        .foregroundColor(.blue)
-                        .fontWeight(.medium)
-                }
+            HStack {
+                Text("每组题目数量")
+                    .font(.headline)
                 
-                // iPhone样式的滚轮选择器
-                QuestionCountPicker(
-                    selectedCount: Binding(
-                        get: { Int(questionsPerSet) },
-                        set: { questionsPerSet = Double($0) }
-                    ),
-                    showDefaultOption: false
-                )
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemGray6))
-                )
+                Spacer()
+                
+                // 紧凑的题量选择器
+                CompactQuestionCountPicker(selectedCount: Binding(
+                    get: { Int(questionsPerSet) },
+                    set: { questionsPerSet = Double($0) }
+                ))
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, 4)
         }
     }
     
