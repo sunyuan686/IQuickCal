@@ -55,7 +55,8 @@ struct HomeView: View {
     
     private var quickStartCard: some View {
         Button(action: {
-            navigationPath.append(PracticeDestination(questionType: .mixed, questionCount: questionsPerSet))
+            let mixedType = QuestionType.mixed
+            navigationPath.append(PracticeDestination(questionType: mixedType, questionCount: mixedType.recommendedQuestionCount))
         }) {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
@@ -64,7 +65,7 @@ struct HomeView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                     
-                    Text("混合练习 · \(questionsPerSet)题")
+                    Text("混合练习 · \(QuestionType.mixed.recommendedQuestionCount)题 · \(QuestionType.mixed.formattedTime)")
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                 }
@@ -126,28 +127,74 @@ struct QuestionTypeCard: View {
     
     var body: some View {
         Button(action: {
-            navigationPath.append(PracticeDestination(questionType: questionType, questionCount: questionsPerSet))
+            navigationPath.append(PracticeDestination(questionType: questionType, questionCount: questionType.recommendedQuestionCount))
         }) {
             VStack(alignment: .leading, spacing: 12) {
-                // 图标
-                Image(systemName: questionType.icon)
-                    .font(.title2)
-                    .foregroundColor(colorForType(questionType.color))
-                    .frame(width: 40, height: 40)
-                    .background(colorForType(questionType.color).opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                // 图标和标题行
+                HStack {
+                    Image(systemName: questionType.icon)
+                        .font(.title2)
+                        .foregroundColor(colorForType(questionType.color))
+                        .frame(width: 32, height: 32)
+                        .background(colorForType(questionType.color).opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                    
+                    Spacer()
+                    
+                    // 题量标识
+                    Text("\(questionType.recommendedQuestionCount)题")
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundColor(colorForType(questionType.color))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(colorForType(questionType.color).opacity(0.1))
+                        .clipShape(Capsule())
+                }
                 
                 // 标题
                 Text(questionType.rawValue)
                     .font(.headline)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
-                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
                 
                 // 示例
                 Text(questionType.example)
                     .font(.caption)
                     .foregroundColor(.secondary)
+                    .lineLimit(1)
+                
+                // 练习信息
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Image(systemName: "clock")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        Text(questionType.formattedTime)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "brain.head.profile")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        Text(questionType.practiceMethodDescription)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                    }
+                    
+                    // 详细说明（如果有）
+                    if let detailedDescription = questionType.detailedDescription {
+                        Text(detailedDescription)
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .lineLimit(2)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(16)
