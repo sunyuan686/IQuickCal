@@ -28,39 +28,56 @@ struct PracticeView: View {
     @State private var questionElapsedTime: TimeInterval = 0
     @State private var timer: Timer?
     
+    // 手写功能状态
+    @State private var showHandwritingOverlay = false
+    
     var body: some View {
-        VStack(spacing: 0) {
-            if let manager = practiceManager, !manager.isCompleted {
-                // 顶部进度区域
-                progressSection
-                
-                // 题目显示区域 - 灵活高度，占据主要空间
-                questionSection
-                    .frame(minHeight: 200)
-                    .layoutPriority(1)
-                
-                // 答案输入区域 - 固定合理高度
-                answerSection
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 12)
-                
-                // 数字键盘 - 紧凑布局
-                numberPad
-                    .background(Color(.systemGray6))
+        ZStack {
+            // 主练习界面
+            VStack(spacing: 0) {
+                if let manager = practiceManager, !manager.isCompleted {
+                    // 顶部进度区域
+                    progressSection
+                    
+                    // 题目显示区域 - 灵活高度，占据主要空间
+                    questionSection
+                        .frame(minHeight: 200)
+                        .layoutPriority(1)
+                    
+                    // 答案输入区域 - 固定合理高度
+                    answerSection
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 12)
+                    
+                    // 数字键盘 - 紧凑布局
+                    numberPad
+                        .background(Color(.systemGray6))
+                }
             }
-        }
-        .navigationBarHidden(true)
-        .toolbar(.hidden, for: .tabBar)
-        .onAppear {
-            setupPracticeManager()
-            startTimer()
-        }
-        .onDisappear {
-            stopTimer()
-        }
-        .navigationDestination(isPresented: $navigateToResult) {
-            if let session = practiceManager?.currentSession {
-                ResultView(session: session, navigationPath: $navigationPath)
+            .navigationBarHidden(true)
+            .toolbar(.hidden, for: .tabBar)
+            .onAppear {
+                setupPracticeManager()
+                startTimer()
+            }
+            .onDisappear {
+                stopTimer()
+            }
+            .navigationDestination(isPresented: $navigateToResult) {
+                if let session = practiceManager?.currentSession {
+                    ResultView(session: session, navigationPath: $navigationPath)
+                }
+            }
+            
+            // 手写覆盖层
+            if let manager = practiceManager, let question = manager.currentQuestion {
+                DrawingOverlayView(
+                    isVisible: $showHandwritingOverlay,
+                    questionExpression: question.expression,
+                    questionType: questionType,
+                    currentQuestionIndex: manager.currentQuestionIndex,
+                    totalQuestions: manager.questions.count
+                )
             }
         }
     }
@@ -192,18 +209,36 @@ struct PracticeView: View {
                         .font(.system(size: 36, weight: .light))
                         .foregroundColor(.secondary)
                     
-                    // 答案输入显示
-                    Text(currentAnswer.isEmpty ? "?" : currentAnswer)
-                        .font(.system(size: 36, weight: .semibold, design: .monospaced))
-                        .foregroundColor(currentAnswer.isEmpty ? .secondary : .primary)
-                        .frame(minWidth: 180)
-                        .padding(.bottom, 2)
-                        .overlay(
-                            Rectangle()
-                                .frame(height: 2)
-                                .foregroundColor(.blue),
-                            alignment: .bottom
-                        )
+                    // 答案输入显示和手写图标
+                    HStack(spacing: 16) {
+                        // 答案输入显示
+                        Text(currentAnswer.isEmpty ? "?" : currentAnswer)
+                            .font(.system(size: 36, weight: .semibold, design: .monospaced))
+                            .foregroundColor(currentAnswer.isEmpty ? .secondary : .primary)
+                            .frame(minWidth: 180)
+                            .padding(.bottom, 2)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 2)
+                                    .foregroundColor(.blue),
+                                alignment: .bottom
+                            )
+                        
+                        // 手写图标（仅对需要"动笔"的题型显示）
+                        if needsHandwriting(for: questionType) {
+                            Button(action: {
+                                showHandwritingOverlay = true
+                            }) {
+                                Image(systemName: "pencil.tip")
+                                    .font(.title2)
+                                    .foregroundColor(.orange)
+                                    .frame(width: 44, height: 44)
+                                    .background(Color.orange.opacity(0.1))
+                                    .clipShape(Circle())
+                            }
+                            .buttonStyle(ScaleButtonStyle())
+                        }
+                    }
                 }
                 
                 Spacer(minLength: 40)
@@ -419,6 +454,11 @@ struct PracticeView: View {
                 navigateToResult = true
             }
         }
+    }
+    
+    /// 判断指定题型是否需要手写功能
+    private func needsHandwriting(for questionType: QuestionType) -> Bool {
+        return questionType.practiceMethodDescription == "动笔"
     }
 }
 
