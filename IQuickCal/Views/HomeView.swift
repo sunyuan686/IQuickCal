@@ -124,6 +124,7 @@ struct QuestionTypeCard: View {
     let questionType: QuestionType
     let questionsPerSet: Int
     @Binding var navigationPath: NavigationPath
+    @State private var showingDetails = false
     
     var body: some View {
         Button(action: {
@@ -186,17 +187,13 @@ struct QuestionTypeCard: View {
                             .lineLimit(1)
                     }
                     
-                    // 详细说明（如果有）
-                    if let detailedDescription = questionType.detailedDescription {
-                        Text(detailedDescription)
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-                            .lineLimit(2)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
+                    // 详细说明区域 - 固定高度
+                    detailedDescriptionView
                 }
+                
+                Spacer(minLength: 0) // 确保卡片底部对齐
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, minHeight: 160, alignment: .leading) // 设置固定最小高度
             .padding(16)
             .background(Color(.systemBackground))
             .overlay(
@@ -206,6 +203,40 @@ struct QuestionTypeCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .buttonStyle(ScaleButtonStyle())
+        .sheet(isPresented: $showingDetails) {
+            QuestionTypeDetailView(questionType: questionType)
+        }
+    }
+    
+    @ViewBuilder
+    private var detailedDescriptionView: some View {
+        if let detailedDescription = questionType.detailedDescription {
+            HStack(alignment: .top, spacing: 4) {
+                Text(detailedDescription)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                
+                // 详情按钮
+                Button(action: {
+                    showingDetails = true
+                }) {
+                    Image(systemName: "info.circle")
+                        .font(.caption2)
+                        .foregroundColor(colorForType(questionType.color))
+                        .padding(4) // 增加点击区域
+                }
+                .buttonStyle(.plain)
+                .contentShape(Rectangle()) // 确保整个区域可点击
+                .allowsHitTesting(true) // 确保按钮可以接收点击事件
+            }
+            .frame(height: 16) // 固定详细说明区域高度
+        } else {
+            // 为没有详细说明的卡片保留相同的空间
+            Spacer()
+                .frame(height: 16)
+        }
     }
     
     private func colorForType(_ colorName: String) -> Color {
@@ -216,6 +247,145 @@ struct QuestionTypeCard: View {
         case "orange": return .orange
         default: return .blue
         }
+    }
+}
+
+// 题型详细信息视图
+struct QuestionTypeDetailView: View {
+    let questionType: QuestionType
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // 头部信息
+                    HStack {
+                        Image(systemName: questionType.icon)
+                            .font(.largeTitle)
+                            .foregroundColor(colorForType(questionType.color))
+                            .frame(width: 60, height: 60)
+                            .background(colorForType(questionType.color).opacity(0.1))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(questionType.rawValue)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            
+                            Text(questionType.example)
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                    }
+                    
+                    Divider()
+                    
+                    // 练习参数
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("练习参数")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        
+                        VStack(spacing: 12) {
+                            DetailRow(
+                                icon: "number.circle",
+                                title: "推荐题量",
+                                value: "\(questionType.recommendedQuestionCount)题",
+                                color: colorForType(questionType.color)
+                            )
+                            
+                            DetailRow(
+                                icon: "clock",
+                                title: "推荐时间",
+                                value: questionType.formattedTime,
+                                color: colorForType(questionType.color)
+                            )
+                            
+                            DetailRow(
+                                icon: "brain.head.profile",
+                                title: "练习方式",
+                                value: questionType.practiceMethodDescription,
+                                color: colorForType(questionType.color)
+                            )
+                        }
+                    }
+                    
+                    // 详细说明
+                    if let detailedDescription = questionType.detailedDescription {
+                        Divider()
+                        
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("详细说明")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                            
+                            Text(detailedDescription)
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                                .lineSpacing(4)
+                        }
+                    }
+                    
+                    Spacer()
+                }
+                .padding()
+            }
+            .navigationTitle("题型详情")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("关闭") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func colorForType(_ colorName: String) -> Color {
+        switch colorName {
+        case "blue": return .blue
+        case "red": return .red
+        case "green": return .green
+        case "orange": return .orange
+        default: return .blue
+        }
+    }
+}
+
+// 详情行组件
+struct DetailRow: View {
+    let icon: String
+    let title: String
+    let value: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: icon)
+                .font(.body)
+                .foregroundColor(color)
+                .frame(width: 24, height: 24)
+                .background(color.opacity(0.1))
+                .clipShape(Circle())
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Text(value)
+                    .font(.body)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+            }
+            
+            Spacer()
+        }
+        .padding(.vertical, 4)
     }
 }
 

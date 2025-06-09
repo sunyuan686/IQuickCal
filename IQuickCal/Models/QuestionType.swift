@@ -123,11 +123,11 @@ enum QuestionType: String, CaseIterable, Codable {
         case .twoDigitMultiplication:
             return "口算"
         case .multiDigitDivisionTwo:
-            return "口算，只需商首位"
+            return "口算"
         case .multiDigitDivisionThree:
-            return "动笔，商前两位"
+            return "动笔"
         case .fourDigitDivision:
-            return "考场实战，根据选项差距截位"
+            return "动笔"
         }
     }
     
@@ -139,7 +139,7 @@ enum QuestionType: String, CaseIterable, Codable {
         case .multiDigitDivisionThree:
             return "无需四舍五入（例：86313/411商21）"
         case .fourDigitDivision:
-            return "4分钟优秀，6分钟及格"
+            return "根据选项差距截位。4分钟优秀，6分钟及格"
         default:
             return nil
         }
