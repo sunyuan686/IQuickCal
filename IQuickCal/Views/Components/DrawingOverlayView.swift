@@ -18,6 +18,10 @@ struct DrawingOverlayView: View {
     let currentQuestionIndex: Int
     let totalQuestions: Int
     
+    // 用于跟踪题目变化的状态
+    @State private var lastQuestionIndex: Int = -1
+    @State private var viewId: String = ""
+    
     var body: some View {
         if isVisible {
             ZStack {
@@ -56,6 +60,48 @@ struct DrawingOverlayView: View {
             }
             .transition(.opacity.combined(with: .scale(scale: 0.95)))
             .animation(.easeInOut(duration: 0.3), value: isVisible)
+            .id(viewId)  // 使用动态viewId强制重新创建视图
+            .onChange(of: currentQuestionIndex) { oldValue, newValue in
+                // 当题目索引变化时，自动清空画布并更新viewId
+                print("题目索引变化: \(oldValue) -> \(newValue), lastQuestionIndex: \(lastQuestionIndex)")
+                if newValue != lastQuestionIndex {
+                    // 立即清空画布
+                    DispatchQueue.main.async {
+                        drawingModel.clearAll()
+                        lastQuestionIndex = newValue
+                        viewId = "drawing-\(newValue)-\(UUID().uuidString)"
+                        print("画布已清空，更新lastQuestionIndex为: \(newValue), viewId: \(viewId)")
+                    }
+                }
+            }
+            .onAppear {
+                // 每次视图出现时都检查是否需要清空画布
+                print("DrawingOverlayView onAppear, currentQuestionIndex: \(currentQuestionIndex), lastQuestionIndex: \(lastQuestionIndex)")
+                
+                // 初始化viewId或者强制更新
+                if viewId.isEmpty || lastQuestionIndex != currentQuestionIndex {
+                    DispatchQueue.main.async {
+                        drawingModel.clearAll()
+                        lastQuestionIndex = currentQuestionIndex
+                        viewId = "drawing-\(currentQuestionIndex)-\(UUID().uuidString)"
+                        print("onAppear时清空画布，设置lastQuestionIndex为: \(currentQuestionIndex), viewId: \(viewId)")
+                    }
+                }
+            }
+            .onChange(of: isVisible) { oldValue, newValue in
+                // 当覆盖层可见性变化时也执行清理检查
+                if newValue && !oldValue {
+                    print("覆盖层显示，当前题目索引: \(currentQuestionIndex), lastQuestionIndex: \(lastQuestionIndex)")
+                    if lastQuestionIndex != currentQuestionIndex {
+                        DispatchQueue.main.async {
+                            drawingModel.clearAll()
+                            lastQuestionIndex = currentQuestionIndex
+                            viewId = "drawing-\(currentQuestionIndex)-\(UUID().uuidString)"
+                            print("覆盖层显示时清空画布，设置lastQuestionIndex为: \(currentQuestionIndex)")
+                        }
+                    }
+                }
+            }
         }
     }
     
