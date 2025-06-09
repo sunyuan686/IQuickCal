@@ -153,25 +153,73 @@ class DefaultQuestionGenerator: QuestionGenerator {
         let result = Double(num1) / Double(num2)
         let correctAnswer = String(format: "%.2f", result)
         
-        // 生成三个错误选项
-        var options = [correctAnswer]
-        for _ in 0..<3 {
-            let wrongResult = result + Double.random(in: -0.5...0.5)
-            let wrongAnswer = String(format: "%.2f", wrongResult)
-            if !options.contains(wrongAnswer) {
-                options.append(wrongAnswer)
+        // 根据8:2比例决定题目难度
+        let isEasyQuestion = Double.random(in: 0...1) < 0.2  // 20%简单题
+        
+        var options: [String] = []
+        
+        if isEasyQuestion {
+            // 简单题：可以先排除两个明显错误的选项，再从两个相近选项中选择
+            options.append(correctAnswer)
+            
+            // 生成一个相近的正确选项（小幅差异）
+            let closeCorrect = result + Double.random(in: -0.05...0.05)
+            let closeCorrectAnswer = String(format: "%.2f", closeCorrect)
+            if closeCorrectAnswer != correctAnswer {
+                options.append(closeCorrectAnswer)
+            }
+            
+            // 生成两个明显错误的选项（可以轻易排除）
+            let obviousWrong1 = result + Double.random(in: 0.5...1.5)
+            let obviousWrong2 = result + Double.random(in: -1.5...(-0.5))
+            options.append(String(format: "%.2f", obviousWrong1))
+            options.append(String(format: "%.2f", obviousWrong2))
+            
+        } else {
+            // 难题：四个选项都很相近，很难区分
+            options.append(correctAnswer)
+            
+            // 生成三个非常接近的错误选项
+            let variations = [-0.03, -0.01, 0.02]  // 非常小的差异
+            for variation in variations {
+                let closeWrong = result + variation
+                let closeWrongAnswer = String(format: "%.2f", closeWrong)
+                if closeWrongAnswer != correctAnswer && !options.contains(closeWrongAnswer) {
+                    options.append(closeWrongAnswer)
+                } else {
+                    // 如果重复了，生成另一个相近的值
+                    let alternativeWrong = result + Double.random(in: -0.04...0.04)
+                    let alternativeAnswer = String(format: "%.2f", alternativeWrong)
+                    if !options.contains(alternativeAnswer) {
+                        options.append(alternativeAnswer)
+                    }
+                }
             }
         }
         
-        // 确保有4个选项
+        // 确保有4个不同的选项
         while options.count < 4 {
-            let wrongResult = result + Double.random(in: -1.0...1.0)
+            let range = isEasyQuestion ? (-1.0...1.0) : (-0.05...0.05)
+            let wrongResult = result + Double.random(in: range)
             let wrongAnswer = String(format: "%.2f", wrongResult)
             if !options.contains(wrongAnswer) {
                 options.append(wrongAnswer)
             }
         }
         
+        // 去重并确保4个选项
+        options = Array(Set(options))
+        while options.count < 4 {
+            let range = isEasyQuestion ? (-1.0...1.0) : (-0.05...0.05)
+            let wrongResult = result + Double.random(in: range)
+            let wrongAnswer = String(format: "%.2f", wrongResult)
+            if !options.contains(wrongAnswer) {
+                options.append(wrongAnswer)
+            }
+        }
+        
+        // 只保留前4个选项并打乱
+        options = Array(options.prefix(4))
         options.shuffle()
         
         return Question(type: .fourDigitDivision, expression: expression, correctAnswer: correctAnswer, options: options)
