@@ -74,16 +74,6 @@ struct DrawingOverlayView: View {
                 }
                 
                 Spacer()
-                
-                Text("手写练习")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.orange)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.orange.opacity(0.1))
-                    )
             }
             
             // 题目表达式
