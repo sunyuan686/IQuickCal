@@ -107,47 +107,15 @@ struct DrawingOverlayView: View {
     
     @ViewBuilder
     private var questionInfoSection: some View {
-        VStack(spacing: 16) {
-            // 题型和进度信息
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(questionType.rawValue)
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.primary)
-                    Text("第 \(currentQuestionIndex + 1) 题 / 共 \(totalQuestions) 题")
-                        .font(.system(size: 14))
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-            }
-            
-            // 题目表达式
-            VStack(spacing: 8) {
-                Text(questionExpression)
-                    .font(.system(size: 32, weight: .bold, design: .monospaced))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
-                
-                Text("=")
-                    .font(.system(size: 24, weight: .light))
-                    .foregroundColor(.secondary)
-                
-                Text("?")
-                    .font(.system(size: 24, weight: .semibold, design: .monospaced))
-                    .foregroundColor(.secondary)
-                    .frame(minWidth: 120)
-                    .padding(.bottom, 2)
-                    .overlay(
-                        Rectangle()
-                            .frame(height: 2)
-                            .foregroundColor(.orange),
-                        alignment: .bottom
-                    )
-            }
+        VStack(spacing: 8) {
+            // 只显示题目表达式，去掉题型、进度、等号和问号
+            Text(questionExpression)
+                .font(.system(size: 28, weight: .bold, design: .monospaced))
+                .foregroundColor(.primary)
+                .multilineTextAlignment(.center)
         }
         .padding(.horizontal, 20)
-        .padding(.vertical, 16)
+        .padding(.vertical, 12)
     }
 }
 
